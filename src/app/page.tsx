@@ -17,13 +17,13 @@ import { getGoogleMapsUrl } from '@/services/google-maps'; // Import the service
 
 const partyDate = new Date('2025-05-10T13:00:00'); // UPDATED DATE
 const partyLocation = {
-  name: "Galia's House",
+  name: "Casa de Galia", // Translated
   address: "123 Party Lane, Celebration City, FL 12345",
 };
 const parentContact = {
-  name: "Mom & Dad",
+  name: "Mamá y Papá", // Translated
   phone: "+1234567890", // UPDATE THIS PHONE NUMBER
-  bankDetails: "Bank Name: XYZ, Account: 123456789" // UPDATE BANK DETAILS
+  bankDetails: "Banco: XYZ, Cuenta: 123456789" // UPDATE BANK DETAILS (Consider translation if needed)
 };
 const whatsappRsvpNumber = "+1234567890"; // UPDATE THIS WHATSAPP NUMBER
 
@@ -80,8 +80,8 @@ export default function Home() {
       ) : (
         <>
           <HeroSection
-            title="Galia's First Birthday Bash!"
-            subtitle="You're Invited!"
+            title="¡El Primer Cumpleaños de Galia!" // Translated
+            subtitle="¡Estás Invitado/a!" // Translated
             date={partyDate}
             locationName={partyLocation.name}
             onScrollDown={handleScrollDown}
@@ -95,14 +95,14 @@ export default function Home() {
                     date={partyDate}
                     address={partyLocation.address}
                     mapUrl={mapUrl}
-                    parentsMessage="We are so excited to celebrate Galia's first year with all our loved ones. Join us for fun, laughter, and cake!" // Customize this message
+                    parentsMessage="Estamos muy emocionados de celebrar el primer año de Galia con todos nuestros seres queridos. ¡Únete a nosotros para divertirnos, reír y comer pastel!" // Translated
                 />
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <Button onClick={() => setIsRsvpModalOpen(true)} size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                        RSVP Now
+                        Confirmar Asistencia
                     </Button>
                     <Button onClick={() => setIsContactModalOpen(true)} size="lg" variant="outline">
-                        Contact & Gifts
+                        Contacto y Regalos
                     </Button>
                 </div>
             </div>
@@ -116,7 +116,7 @@ export default function Home() {
             onClick={() => setIsMessageModalOpen(true)}
           >
             <MessageCircle size={24} />
-            <span className="sr-only">Send Message to Galia</span>
+            <span className="sr-only">Enviar Mensaje a Galia</span>
           </Button>
 
           {/* Modals */}
