@@ -34,25 +34,25 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
 
   const handleSendRsvp = async () => {
     if (!attendance) {
-      toast({ title: "Please select attendance", variant: "destructive" });
+      toast({ title: "Por favor selecciona si asistirás", variant: "destructive" });
       return;
     }
     if (attendance === 'yes' && (!guestName || !numberOfGuests || Number(numberOfGuests) < 1)) {
-      toast({ title: "Please fill in your name and number of guests", variant: "destructive" });
+      toast({ title: "Por favor ingresa tu nombre y número de invitados", variant: "destructive" });
       return;
     }
      if (attendance === 'no' && !guestName) {
-      toast({ title: "Please fill in your name", variant: "destructive" });
+      toast({ title: "Por favor ingresa tu nombre", variant: "destructive" });
       return;
     }
 
 
     let messageText = '';
+    const guestsSuffix = Number(numberOfGuests) > 1 ? 'invitados' : 'invitado'; // Translate suffix
     if (attendance === 'yes') {
-       const guestsSuffix = Number(numberOfGuests) > 1 ? 'guests' : 'guest';
-       messageText = `Hi! ${guestName} will be attending Galia's Birthday Bash (${numberOfGuests} ${guestsSuffix}). We're excited! 🎉`;
+       messageText = `¡Hola! ${guestName} asistirá al Cumpleaños de Galia (${numberOfGuests} ${guestsSuffix}). ¡Estamos emocionados! 🎉`; // Translated message
     } else {
-       messageText = `Hi, unfortunately ${guestName} won't be able to make it to Galia's Birthday Bash. Sending our best wishes! ❤️`;
+       messageText = `Hola, lamentablemente ${guestName} no podrá asistir al Cumpleaños de Galia. ¡Enviamos nuestros mejores deseos! ❤️`; // Translated message
     }
 
     const message: WhatsappMessage = {
@@ -65,8 +65,8 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
       const success = await sendWhatsAppMessage(message); // Use the service function
       if (success) {
         toast({
-          title: "RSVP Sent!",
-          description: `Your ${attendance === 'yes' ? 'acceptance' : 'regret'} has been sent via WhatsApp (simulated).`,
+          title: "¡Confirmación Enviada!", // Translated
+          description: `Tu ${attendance === 'yes' ? 'confirmación' : 'respuesta negativa'} ha sido enviada por WhatsApp (simulado).`, // Translated
         });
         onClose(); // Close modal on success
         // Reset form state optionally
@@ -80,8 +80,8 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
     } catch (error) {
       console.error("Error sending RSVP:", error);
       toast({
-        title: "Error Sending RSVP",
-        description: "Could not send your RSVP. Please try again or contact the hosts directly.",
+        title: "Error al Enviar Confirmación", // Translated
+        description: "No se pudo enviar tu confirmación. Por favor intenta de nuevo o contacta a los anfitriones directamente.", // Translated
         variant: "destructive",
       });
     } finally {
@@ -93,11 +93,11 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
     if (!attendance || !guestName) return;
 
     let baseMessage = '';
+    const guestsSuffix = Number(numberOfGuests) > 1 ? 'invitados' : 'invitado'; // Translate suffix
      if (attendance === 'yes') {
-       const guestsSuffix = Number(numberOfGuests) > 1 ? 'guests' : 'guest';
-       baseMessage = `Hi! ${guestName} will be attending Galia's Birthday Bash (${numberOfGuests} ${guestsSuffix}). We're excited! 🎉`;
+       baseMessage = `¡Hola! ${guestName} asistirá al Cumpleaños de Galia (${numberOfGuests} ${guestsSuffix}). ¡Estamos emocionados! 🎉`; // Translated message
     } else {
-       baseMessage = `Hi, unfortunately ${guestName} won't be able to make it to Galia's Birthday Bash. Sending our best wishes! ❤️`;
+       baseMessage = `Hola, lamentablemente ${guestName} no podrá asistir al Cumpleaños de Galia. ¡Enviamos nuestros mejores deseos! ❤️`; // Translated message
     }
 
 
@@ -109,8 +109,8 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
     } catch (error) {
         console.error("Error generating suggestions:", error);
         toast({
-            title: "AI Error",
-            description: "Could not generate message suggestions.",
+            title: "Error de IA", // Translated
+            description: "No se pudieron generar sugerencias de mensaje.", // Translated
             variant: "destructive",
         });
     } finally {
@@ -122,11 +122,11 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
     if (!attendance) return "#"; // Should not happen if button is disabled
 
     let messageText = '';
+    const guestsSuffix = Number(numberOfGuests) > 1 ? 'invitados' : 'invitado'; // Translate suffix
      if (attendance === 'yes') {
-       const guestsSuffix = Number(numberOfGuests) > 1 ? 'guests' : 'guest';
-       messageText = `Hi! ${guestName || 'Guest'} will be attending Galia's Birthday Bash (${numberOfGuests || 1} ${guestsSuffix}). We're excited! 🎉`;
+       messageText = `¡Hola! ${guestName || 'Invitado/a'} asistirá al Cumpleaños de Galia (${numberOfGuests || 1} ${guestsSuffix}). ¡Estamos emocionados! 🎉`; // Translated message
     } else {
-       messageText = `Hi, unfortunately ${guestName || 'Guest'} won't be able to make it to Galia's Birthday Bash. Sending our best wishes! ❤️`;
+       messageText = `Hola, lamentablemente ${guestName || 'Invitado/a'} no podrá asistir al Cumpleaños de Galia. ¡Enviamos nuestros mejores deseos! ❤️`; // Translated message
     }
 
     const encodedMessage = encodeURIComponent(messageText);
@@ -140,22 +140,22 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[480px] bg-card">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold">RSVP for Galia's Party</DialogTitle>
+          <DialogTitle className="text-2xl font-semibold">Confirmar Asistencia</DialogTitle> {/* Translated */}
           <DialogDescription>
-            Let us know if you can make it! Confirm via WhatsApp.
+            ¡Avísanos si puedes venir! Confirma por WhatsApp. {/* Translated */}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
            <div className="grid grid-cols-4 items-center gap-4">
              <Label htmlFor="guestName" className="text-right col-span-1">
-              Your Name
+              Tu Nombre {/* Translated */}
              </Label>
              <Input
               id="guestName"
               value={guestName}
               onChange={(e) => setGuestName(e.target.value)}
               className="col-span-3"
-              placeholder="Enter your name(s)"
+              placeholder="Ingresa tu(s) nombre(s)" /* Translated */
             />
            </div>
 
@@ -166,11 +166,11 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
              >
                 <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="rsvp-yes" />
-                    <Label htmlFor="rsvp-yes" className="text-lg cursor-pointer">🎉 Yes, I'm coming!</Label>
+                    <Label htmlFor="rsvp-yes" className="text-lg cursor-pointer">🎉 ¡Sí, voy!</Label> {/* Translated */}
                 </div>
                 <div className="flex items-center space-x-2">
                     <RadioGroupItem value="no" id="rsvp-no" />
-                    <Label htmlFor="rsvp-no" className="text-lg cursor-pointer">😢 No, I can't make it</Label>
+                    <Label htmlFor="rsvp-no" className="text-lg cursor-pointer">😢 No puedo ir</Label> {/* Translated */}
                 </div>
             </RadioGroup>
 
@@ -178,7 +178,7 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
           {attendance === 'yes' && (
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="numberOfGuests" className="text-right col-span-1">
-                Guests
+                Invitados {/* Translated */}
               </Label>
               <Input
                 id="numberOfGuests"
@@ -196,12 +196,12 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
                 <div className="pt-4 border-t mt-4">
                      <Button onClick={handleGenerateSuggestions} variant="ghost" size="sm" className="w-full mb-2" disabled={isLoadingSuggestions}>
                         <MessageSquareText className="mr-2 h-4 w-4" />
-                        {isLoadingSuggestions ? 'Generating...' : 'Suggest Messages (AI)'}
+                        {isLoadingSuggestions ? 'Generando...' : 'Sugerir Mensajes (IA)'} {/* Translated */}
                     </Button>
-                    {isLoadingSuggestions && <p className="text-sm text-muted-foreground text-center">Generating suggestions...</p>}
+                    {isLoadingSuggestions && <p className="text-sm text-muted-foreground text-center">Generando sugerencias...</p>} {/* Translated */}
                     {suggestedMessages.length > 0 && (
                         <div className="space-y-2 mt-2">
-                            <p className="text-sm font-medium text-center">AI Suggestions:</p>
+                            <p className="text-sm font-medium text-center">Sugerencias de IA:</p> {/* Translated */}
                             {suggestedMessages.map((msg, index) => (
                                 <Button key={index} variant="outline" size="sm" className="w-full text-left h-auto py-2" onClick={() => {
                                     // Update state and construct link for the suggested message
@@ -221,7 +221,7 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
 
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={isSending}>Cancel</Button>
+          <Button variant="outline" onClick={onClose} disabled={isSending}>Cancelar</Button> {/* Translated */}
           {/* <Button onClick={handleSendRsvp} disabled={isSending || !attendance || !guestName}> */}
           {/* Use an anchor tag for direct WhatsApp link */}
           <Button asChild disabled={!attendance || !guestName}>
@@ -230,7 +230,7 @@ const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, whatsappNumber, 
                rel="noopener noreferrer"
                onClick={onClose} // Close modal when link is clicked
             >
-                 Confirm via WhatsApp
+                 Confirmar por WhatsApp {/* Translated */}
             </a>
           </Button>
         </DialogFooter>
