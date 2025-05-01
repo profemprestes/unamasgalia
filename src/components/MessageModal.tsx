@@ -28,14 +28,14 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
 
   const handleSendMessage = async () => {
      if (!senderName || !message) {
-      toast({ title: "Please fill in your name and message", variant: "destructive" });
+      toast({ title: "Por favor completa tu nombre y mensaje", variant: "destructive" }); // Translated
       return;
     }
 
     setIsSending(true);
     try {
       // Simulate sending message
-      console.log(`Simulating sending message from ${senderName}: ${message}`);
+      console.log(`Simulando envío de mensaje de ${senderName}: ${message}`); // Translated
       // Replace with actual API call:
       // const success = await sendGaliaMessage({ senderName, message });
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
@@ -43,8 +43,8 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
 
       if (success) {
         toast({
-          title: "Message Sent!",
-          description: "Your message for Galia has been sent (simulated).",
+          title: "¡Mensaje Enviado!", // Translated
+          description: "Tu mensaje para Galia ha sido enviado (simulado).", // Translated
         });
         onClose(); // Close modal on success
         // Reset form
@@ -56,8 +56,8 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
     } catch (error) {
       console.error("Error sending message:", error);
       toast({
-        title: "Error Sending Message",
-        description: "Could not send your message. Please try again.",
+        title: "Error al Enviar Mensaje", // Translated
+        description: "No se pudo enviar tu mensaje. Por favor, intenta de nuevo.", // Translated
         variant: "destructive",
       });
     } finally {
@@ -69,27 +69,27 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[480px] bg-card">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold">Send a Message to Galia</DialogTitle>
+          <DialogTitle className="text-2xl font-semibold">Enviar un Mensaje a Galia</DialogTitle> {/* Translated */}
           <DialogDescription>
-            Leave a sweet message for Galia's first birthday!
+            ¡Deja un lindo mensaje para el primer cumpleaños de Galia! {/* Translated */}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="senderName">Your Name</Label>
+              <Label htmlFor="senderName">Tu Nombre</Label> {/* Translated */}
               <Input
                 id="senderName"
                 value={senderName}
                 onChange={(e) => setSenderName(e.target.value)}
-                placeholder="Enter your name"
+                placeholder="Ingresa tu nombre" // Translated
                 disabled={isSending}
                />
             </div>
           <div className="grid w-full gap-1.5">
-            <Label htmlFor="message">Your Message</Label>
+            <Label htmlFor="message">Tu Mensaje</Label> {/* Translated */}
             <Textarea
               id="message"
-              placeholder="Type your message here..."
+              placeholder="Escribe tu mensaje aquí..." // Translated
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={4}
@@ -98,9 +98,9 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={isSending}>Cancel</Button>
+          <Button variant="outline" onClick={onClose} disabled={isSending}>Cancelar</Button> {/* Translated */}
           <Button onClick={handleSendMessage} disabled={isSending || !senderName || !message}>
-            {isSending ? 'Sending...' : 'Send Message'}
+            {isSending ? 'Enviando...' : 'Enviar Mensaje'} {/* Translated */}
           </Button>
         </DialogFooter>
       </DialogContent>
