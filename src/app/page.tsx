@@ -18,14 +18,14 @@ import { getGoogleMapsUrl } from '@/services/google-maps'; // Import the service
 const partyDate = new Date('2025-05-10T13:00:00'); // UPDATED DATE
 const partyLocation = {
   name: "Casa de Galia", // Translated
-  address: "123 Party Lane, Celebration City, FL 12345",
+  address: "CP3W+P5H, 11000 San Marcos, Departamento de Canelones",
 };
 const parentContact = {
   name: "Mamá y Papá", // Translated
-  phone: "+1234567890", // UPDATE THIS PHONE NUMBER
-  bankDetails: "Banco: XYZ, Cuenta: 123456789" // UPDATE BANK DETAILS (Consider translation if needed)
+  phone: "+59892475455", // UPDATE THIS PHONE NUMBER
+  bankDetails: "Banco: BROU, Cuenta: 001782901-00001" // UPDATE BANK DETAILS (Consider translation if needed)
 };
-const whatsappRsvpNumber = "+1234567890"; // UPDATE THIS WHATSAPP NUMBER
+const whatsappRsvpNumber = "+59892475455"; // UPDATE THIS WHATSAPP NUMBER
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -85,7 +85,7 @@ export default function Home() {
             date={partyDate}
             locationName={partyLocation.name}
             onScrollDown={handleScrollDown}
-            imageUrl="https://picsum.photos/seed/galia_hero/1200/800"
+            imageUrl="/GaliaHero.svg"
             data-ai-hint="girl birthday party"
           />
           <div id="party-details" className="py-12 md:py-20 bg-secondary">
