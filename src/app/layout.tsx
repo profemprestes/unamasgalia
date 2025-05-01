@@ -61,7 +61,8 @@ export default function RootLayout({
       <head>
         <JsonLdScript event={partyDetails} />
       </head>
-      <body className="antialiased bg-background min-h-screen flex flex-col">
+      {/* Added suppressHydrationWarning to potentially mitigate extension-related issues */}
+      <body className="antialiased bg-background min-h-screen flex flex-col" suppressHydrationWarning={true}>
         <main className="flex-grow relative overflow-hidden">
           {children}
         </main>
