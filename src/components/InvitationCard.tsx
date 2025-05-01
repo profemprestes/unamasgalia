@@ -14,12 +14,12 @@ const InvitationCard: React.FC<InvitationCardProps> = ({ onClick }) => {
         <CardContent className="p-0">
           <div className="relative aspect-[3/4]">
             <Image
-              src="https://picsum.photos/seed/galia_card/600/800"
+              src="/GaliaHero.svg" // Updated image source
               alt="Primer Cumpleaños de Galia"
               layout="fill"
               objectFit="cover"
               className="transition-transform duration-500 group-hover:scale-110"
-              data-ai-hint="cute baby girl birthday"
+              // Removed data-ai-hint as it's not a placeholder anymore
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6 text-primary-foreground">

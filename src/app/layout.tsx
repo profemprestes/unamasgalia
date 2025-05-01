@@ -9,19 +9,19 @@ import JsonLdScript from '@/components/JsonLdScript'; // Import the JSON-LD comp
 const partyDetails = {
   name: "Galia's First Birthday Bash!",
   startDate: "2025-05-10T13:00:00-04:00", // Updated date/time
-  endDate: "2025-05-10T16:00:00-04:00", // Updated date/time (assuming 3 hour duration)
+  endDate: "2025-05-10T18:00:00-04:00", // Updated date/time (assuming 3 hour duration)
   location: {
-    name: "Galia's House",
+    name: "Galia Cumple",
     address: {
-      streetAddress: "123 Party Lane",
-      addressLocality: "Celebration City",
-      addressRegion: "FL",
+      streetAddress: "Ruta 5 Km 38.200, Juanicó, Canelones",
+      addressLocality: "Club Ciclista Juanico",
+      addressRegion: "UY",
       postalCode: "12345",
-      addressCountry: "US",
+      addressCountry: "UY",
     },
   },
   description: "Join us to celebrate Galia's first birthday!",
-  image: "https://picsum.photos/seed/galia_hero/1200/630", // Example image - UPDATE THIS
+  image: "/GaliaHero.svg", // Example image - UPDATE THIS
   url: "https://your-invitation-url.com", // UPDATE THIS with the actual deployment URL
 };
 
