@@ -60,20 +60,20 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   if (!isClient) {
     // Render placeholder on the server to avoid hydration mismatch
     return (
-       <Card className="w-full max-w-2xl mx-auto shadow-lg border-accent">
+      <Card className="w-full max-w-2xl mx-auto shadow-lg border-accent">
         <CardHeader>
             {/* Translated Placeholder Title */}
             <CardTitle className="text-center text-2xl md:text-3xl font-semibold text-foreground">¡Tiempo Hasta la Fiesta!</CardTitle>
         </CardHeader>
         <CardContent className="flex justify-around text-center p-6">
             {['días', 'horas', 'minutos', 'segundos'].map((interval) => ( // Translated intervals
-            <div key={interval} className="flex flex-col items-center w-16 md:w-20">
-                <span className="text-3xl md:text-5xl font-bold text-primary animate-pulse">--</span>
-                <span className="text-xs md:text-sm uppercase text-muted-foreground mt-1">{interval}</span>
-            </div>
+            (<div key={interval} className="flex flex-col items-center w-16 md:w-20">
+              <span className="text-3xl md:text-5xl font-bold text-primary animate-pulse">--</span>
+              <span className="text-xs md:text-sm uppercase text-muted-foreground mt-1">{interval}</span>
+            </div>)
             ))}
         </CardContent>
-        </Card>
+      </Card>
     );
   }
 

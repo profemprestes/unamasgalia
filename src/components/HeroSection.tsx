@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { format } from 'date-fns';
@@ -11,7 +11,7 @@ interface HeroSectionProps {
   subtitle: string;
   date: Date;
   locationName: string;
-  imageUrl: string;
+  imageUrl: '/hero.svg';
   onScrollDown: () => void;
 }
 
@@ -39,7 +39,7 @@ const HeroSection: React.FC<HeroSectionProps & React.HTMLAttributes<HTMLDivEleme
           layout="fill"
           objectFit="cover"
           className="opacity-30" // Slightly reduced opacity for better text contrast
-          priority // Load hero image quickly
+ priority // Load hero image quickly
         />
         {/* Adjusted gradient for potentially better readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-background" />

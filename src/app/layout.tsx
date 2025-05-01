@@ -21,13 +21,14 @@ const partyDetails = {
     },
   },
   description: "Join us to celebrate Galia's first birthday!",
-  image: "/GaliaHero.svg", // Example image - UPDATE THIS
+  image: "/hero.svg", // Example image - UPDATE THIS
   url: "https://your-invitation-url.com", // UPDATE THIS with the actual deployment URL
 };
 
 export const metadata: Metadata = {
   title: "Galia's First Birthday Bash!",
   description: "You're invited to celebrate Galia's first birthday!",
+  metadataBase: new URL('https://galiacumple.com'),
   // Add Open Graph and Twitter card metadata for better sharing
   openGraph: {
     title: partyDetails.name,

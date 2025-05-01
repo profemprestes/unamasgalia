@@ -1,17 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Button } from '@/components/ui/button';
 import Loader from '@/components/Loader';
 import InvitationCard from '@/components/InvitationCard';
 import HeroSection from '@/components/HeroSection';
-import PartyDetails from '@/components/PartyDetails';
 import CountdownTimer from '@/components/CountdownTimer';
 import RsvpModal from '@/components/RsvpModal';
 import ContactModal from '@/components/ContactModal';
 import MessageModal from '@/components/MessageModal';
 import DaisyConfetti from '@/components/DaisyConfetti';
+import PartyDetails from '@/components/PartyDetails'; // Import PartyDetails
 import { MessageCircle } from 'lucide-react';
 import { getGoogleMapsUrl } from '@/services/google-maps'; // Import the service
 
@@ -86,7 +86,7 @@ export default function Home() {
             locationName={partyLocation.name}
             onScrollDown={handleScrollDown}
             imageUrl="/GaliaHero.svg"
-            data-ai-hint="girl birthday party"
+            // Removed data-ai-hint as it's not a placeholder anymore
           />
           <div id="party-details" className="py-12 md:py-20 bg-secondary">
             <div className="container mx-auto px-4 space-y-12">

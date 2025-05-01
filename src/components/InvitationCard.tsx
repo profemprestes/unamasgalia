@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
