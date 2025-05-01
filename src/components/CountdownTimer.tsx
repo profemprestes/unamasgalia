@@ -62,10 +62,11 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
     return (
        <Card className="w-full max-w-2xl mx-auto shadow-lg border-accent">
         <CardHeader>
-            <CardTitle className="text-center text-2xl md:text-3xl font-semibold text-foreground">Time Until the Party!</CardTitle>
+            {/* Translated Placeholder Title */}
+            <CardTitle className="text-center text-2xl md:text-3xl font-semibold text-foreground">¡Tiempo Hasta la Fiesta!</CardTitle>
         </CardHeader>
         <CardContent className="flex justify-around text-center p-6">
-            {['days', 'hours', 'minutes', 'seconds'].map((interval) => (
+            {['días', 'horas', 'minutos', 'segundos'].map((interval) => ( // Translated intervals
             <div key={interval} className="flex flex-col items-center w-16 md:w-20">
                 <span className="text-3xl md:text-5xl font-bold text-primary animate-pulse">--</span>
                 <span className="text-xs md:text-sm uppercase text-muted-foreground mt-1">{interval}</span>
@@ -78,18 +79,28 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
 
   const timerComponents: JSX.Element[] = [];
 
-  Object.keys(timeLeft).forEach((interval) => {
-    const value = timeLeft[interval as keyof TimeLeft];
+  Object.keys(timeLeft).forEach((intervalKey) => {
+    const value = timeLeft[intervalKey as keyof TimeLeft];
     if (value === undefined) {
       return;
     }
 
+    // Translate interval names
+    let intervalName = intervalKey;
+    switch(intervalKey) {
+        case 'days': intervalName = 'días'; break;
+        case 'hours': intervalName = 'horas'; break;
+        case 'minutes': intervalName = 'minutos'; break;
+        case 'seconds': intervalName = 'segundos'; break;
+    }
+
+
     timerComponents.push(
-      <div key={interval} className="flex flex-col items-center w-16 md:w-20">
+      <div key={intervalKey} className="flex flex-col items-center w-16 md:w-20">
         <span className="text-3xl md:text-5xl font-bold text-primary">
           {String(value).padStart(2, '0')}
         </span>
-        <span className="text-xs md:text-sm uppercase text-muted-foreground mt-1">{interval}</span>
+        <span className="text-xs md:text-sm uppercase text-muted-foreground mt-1">{intervalName}</span>
       </div>
     );
   });
@@ -99,12 +110,13 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg border-accent">
       <CardHeader>
+        {/* Translated Title */}
         <CardTitle className="text-center text-2xl md:text-3xl font-semibold text-foreground">
-          {isPartyTime ? "The Party is On!" : "Time Until the Party!"}
+          {isPartyTime ? "¡La Fiesta Está en Marcha!" : "¡Tiempo Hasta la Fiesta!"}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex justify-around text-center p-6">
-        {timerComponents.length ? timerComponents : <span className="text-xl text-muted-foreground">Loading timer...</span>}
+        {timerComponents.length ? timerComponents : <span className="text-xl text-muted-foreground">Cargando temporizador...</span>}
       </CardContent>
     </Card>
   );
