@@ -15,7 +15,7 @@ const InvitationCard: React.FC<InvitationCardProps> = ({ onClick }) => {
           <div className="relative aspect-[3/4]">
             <Image
               src="https://picsum.photos/seed/galia_card/600/800"
-              alt="Galia's First Birthday"
+              alt="Primer Cumpleaños de Galia"
               layout="fill"
               objectFit="cover"
               className="transition-transform duration-500 group-hover:scale-110"
@@ -23,9 +23,9 @@ const InvitationCard: React.FC<InvitationCardProps> = ({ onClick }) => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6 text-primary-foreground">
-              <p className="text-lg font-light">You're Invited to</p>
-              <h1 className="text-4xl font-bold tracking-tight mb-2 text-white">Galia's First Birthday!</h1>
-              <p className="text-sm opacity-80 group-hover:opacity-100 transition-opacity duration-300">Click to open</p>
+              <p className="text-lg font-light">Estás invitado/a a</p>
+              <h1 className="text-4xl font-bold tracking-tight mb-2 text-white">¡El Primer Cumpleaños de Galia!</h1>
+              <p className="text-sm opacity-80 group-hover:opacity-100 transition-opacity duration-300">Haz clic para abrir</p>
             </div>
           </div>
         </CardContent>
