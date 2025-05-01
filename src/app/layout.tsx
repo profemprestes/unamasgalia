@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+// Removed GeistMono as it's not found
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import JsonLdScript from '@/components/JsonLdScript'; // Import the JSON-LD component
@@ -8,8 +8,8 @@ import JsonLdScript from '@/components/JsonLdScript'; // Import the JSON-LD comp
 // Event details for JSON-LD
 const partyDetails = {
   name: "Galia's First Birthday Bash!",
-  startDate: "2024-09-15T14:00:00-04:00", // Example date/time - UPDATE THIS
-  endDate: "2024-09-15T17:00:00-04:00", // Example date/time - UPDATE THIS
+  startDate: "2025-05-10T13:00:00-04:00", // Updated date/time
+  endDate: "2025-05-10T16:00:00-04:00", // Updated date/time (assuming 3 hour duration)
   location: {
     name: "Galia's House",
     address: {
@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable}`}>
       <head>
         <JsonLdScript event={partyDetails} />
       </head>

@@ -15,7 +15,7 @@ import DaisyConfetti from '@/components/DaisyConfetti';
 import { MessageCircle } from 'lucide-react';
 import { getGoogleMapsUrl } from '@/services/google-maps'; // Import the service
 
-const partyDate = new Date('2024-09-15T14:00:00'); // UPDATE THIS DATE
+const partyDate = new Date('2025-05-10T13:00:00'); // UPDATED DATE
 const partyLocation = {
   name: "Galia's House",
   address: "123 Party Lane, Celebration City, FL 12345",
