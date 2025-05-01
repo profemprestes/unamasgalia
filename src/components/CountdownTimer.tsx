@@ -16,6 +16,10 @@ interface TimeLeft {
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   const calculateTimeLeft = (): TimeLeft => {
+    // Ensure targetDate is valid before calculation
+    if (!(targetDate instanceof Date) || isNaN(targetDate.getTime())) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
     const difference = +targetDate - +new Date();
     let timeLeft: TimeLeft = {};
 
@@ -40,6 +44,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   useEffect(() => {
     // Ensure this runs only on the client after hydration
     setIsClient(true);
+
+    // Perform initial calculation and set up interval timer only on client
     setTimeLeft(calculateTimeLeft()); // Initial calculation
 
     const timer = setInterval(() => {
@@ -47,10 +53,12 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]); // Re-run effect if targetDate changes
+    // Only run this effect once on mount on the client side
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array ensures this runs once on client mount
 
   if (!isClient) {
-    // Render placeholder or nothing on the server to avoid hydration mismatch
+    // Render placeholder on the server to avoid hydration mismatch
     return (
        <Card className="w-full max-w-2xl mx-auto shadow-lg border-accent">
         <CardHeader>
@@ -71,21 +79,22 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   const timerComponents: JSX.Element[] = [];
 
   Object.keys(timeLeft).forEach((interval) => {
-    if (timeLeft[interval as keyof TimeLeft] === undefined) {
+    const value = timeLeft[interval as keyof TimeLeft];
+    if (value === undefined) {
       return;
     }
 
     timerComponents.push(
       <div key={interval} className="flex flex-col items-center w-16 md:w-20">
         <span className="text-3xl md:text-5xl font-bold text-primary">
-          {String(timeLeft[interval as keyof TimeLeft]!).padStart(2, '0')}
+          {String(value).padStart(2, '0')}
         </span>
         <span className="text-xs md:text-sm uppercase text-muted-foreground mt-1">{interval}</span>
       </div>
     );
   });
 
-   const isPartyTime = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && +targetDate <= +new Date();
+   const isPartyTime = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && targetDate && +targetDate <= +new Date();
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg border-accent">
@@ -95,7 +104,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex justify-around text-center p-6">
-        {timerComponents.length ? timerComponents : <span className="text-xl text-muted-foreground">The party has begun!</span>}
+        {timerComponents.length ? timerComponents : <span className="text-xl text-muted-foreground">Loading timer...</span>}
       </CardContent>
     </Card>
   );
